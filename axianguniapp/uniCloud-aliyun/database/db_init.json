@@ -1,0 +1,18 @@
+// 在本文件中可配置云数据库初始化，数据格式见：https://uniapp.dcloud.io/uniCloud/hellodb?id=db-init
+// 编写完毕后对本文件点右键，可按配置规则创建表和添加数据
+{   "bingImgs":{
+		"data":[
+			{
+			"imgId": "20210307",
+			 "CreateDate": "2021-03-01",
+			 "Creator": "admin",
+			 "Domain": "https://www.bing.com",
+			 "Title": "鸟瞰高耸入云的洛根山，加拿大克鲁瓦尼国家公园 (© plainpicture/Design Pics/Robert Postma)",
+			 "Url": "https://www.bing.com/th?id=OHR.LoganClouds_ZH-CN3900647104_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp",
+			 "UrlBase": "https://www.bing.com/th?id=OHR.LoganClouds_ZH-CN3900647104"
+			}
+			
+		]
+	}
+
+}
