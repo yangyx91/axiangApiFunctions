@@ -7,7 +7,8 @@ exports.main = async (event, context) => {
 	return event
 };
 
-
+//let clientIP = context.CLIENTIP // 客户端ip信息
+//let clientUA = context.CLIENTUA // 客户端user-agent
 // logId = this.LogId,
 //                 eventId = this.EventId,
 //                 logDate = this.LogDate,
@@ -25,11 +26,10 @@ exports.main = async (event, context) => {
 
 // https://72617af9-beba-4a09-8f3a-1e026fd1eff9.bspapp.com/http/apiLogger
 
+// https://openapi.axiangblog.com/addBingImg/v1/
 
-// http(s)://openapi.axiangblog.com/addBingImg/v1.0/add
+// https://openapi.axiangblog.com/dailyBingImg/v1/
 
-// http(s)://openapi.axiangblog.com/dailyBingImg/v1.0/get
+// https://openapi.axiangblog.com/getBingImgs/v1/
 
-// http(s)://openapi.axiangblog.com/getBingImgs/v1.0/getimgs
-
-// http(s)://openapi.axiangblog.com/apiLogger/v1.0/loginfo
+// https://openapi.axiangblog.com/apiLogger/v1/

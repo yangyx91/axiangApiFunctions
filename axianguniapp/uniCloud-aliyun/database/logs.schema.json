@@ -1,0 +1,52 @@
+// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": false,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"eventId":{
+			"bsonType":"string"
+		},
+		"logLevel":{
+			"bsonType": "string",
+			"description": "Debug,Info,Error,Warn",
+			"label": "日志级别"
+		},
+		"creator":{
+			"bsonType":"string",
+			"description":"方法名"
+		},
+		"exception":{
+			"bsonType":"string",
+			"description":"异常详情"
+		},
+		"message":{
+			"bsonType":"string"
+		},
+		"inputArgs":{
+			"bsonType":"array",
+			"arrayType":"string",
+			"description":"输入参数"
+		},
+		"outArgs":{
+			"bsonType":"array",
+			"arrayType":"string",
+			"description":"输出参数"
+		},
+		"logDate":{
+			"bsonType": "timestamp",
+			"label": "创建时间",
+			"forceDefaultValue": {
+			    "$env": "now"
+			 }
+		}
+	}
+}

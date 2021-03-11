@@ -13,6 +13,17 @@
 			}
 			
 		]
+	},
+	"logs":{
+		"data":{
+			"eventId":"1",
+			"logLevel":"Info",
+			"creator":"delete",
+			"exception":"",
+			"message":"",
+			"inputArgs":[],
+			"outArgs":[],
+			"logDate":""
+		}
 	}
-
 }
