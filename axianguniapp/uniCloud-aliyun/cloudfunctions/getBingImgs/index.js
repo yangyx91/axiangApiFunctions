@@ -12,15 +12,19 @@ exports.main = async (event, context) => {
 	      body = Buffer.from(body)
 	}
 	if(body!=''){
-		const param = JSON.parse(body);
-		//event为客户端上传的参数
-		
-		if(param.page!=undefined && param.page>=1){
-			page=param.page;
-		}
-		
-		if(param.pageSize!=undefined && param.pageSize>=1){
-			pageSize=param.pageSize;
+		try{
+			const param = JSON.parse(body);
+			//event为客户端上传的参数
+			
+			if(param.page!=undefined && param.page>=1){
+				page=param.page;
+			}
+			
+			if(param.pageSize!=undefined && param.pageSize>=1){
+				pageSize=param.pageSize;
+			}
+		}catch(e){
+			
 		}
 	}
 	
