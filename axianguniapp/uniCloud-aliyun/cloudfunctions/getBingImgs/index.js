@@ -33,3 +33,6 @@ exports.main = async (event, context) => {
 	//返回数据给客户端
 	return pageRes
 };
+
+// https://72617af9-beba-4a09-8f3a-1e026fd1eff9.bspapp.com/http/getBingImgs
+// https://openapi.axiangblog.com/getBingImgs/v1/

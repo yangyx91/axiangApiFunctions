@@ -32,21 +32,16 @@
 			"bsonType":"string"
 		},
 		"inputArgs":{
-			"bsonType":"array",
-			"arrayType":"string",
+			"bsonType":"string",
 			"description":"输入参数"
 		},
 		"outArgs":{
-			"bsonType":"array",
-			"arrayType":"string",
+			"bsonType":"string",
 			"description":"输出参数"
 		},
 		"logDate":{
-			"bsonType": "timestamp",
-			"label": "创建时间",
-			"forceDefaultValue": {
-			    "$env": "now"
-			 }
+			"bsonType": "date",
+			"label": "创建时间"
 		}
 	}
 }

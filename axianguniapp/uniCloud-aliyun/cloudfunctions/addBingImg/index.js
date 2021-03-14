@@ -31,6 +31,18 @@ exports.main = async (event, context) => {
 	const queryRes=await collection.where({"imgId":bingImg.startdate}).get()
 	
 	if(queryRes.affectedDocs>0 && queryRes.data!=undefined && queryRes.data.length>0){
+		//var strToBase64 = new Buffer(JSON.stringify(queryRes)).toString('base64');
+		let callFunctionResult = await uniCloud.callFunction({
+		    name: "apiLogger",
+		    data: { 
+			logLevel: "Info",
+			creator: "addBingImg",
+			exception: "",
+			message: "",
+			inputArgs:JSON.stringify(queryRes),
+			outArgs: "",
+			},
+		})
 		return queryRes;
 	}
 	else
@@ -44,25 +56,6 @@ exports.main = async (event, context) => {
 	}
 };
 
-//		//console.log(queryRes.data[0]._id);
-		//const delRes=await collection.doc(queryRes.data[0]._id).remove()
-//let clientIP = context.CLIENTIP // 客户端ip信息
-//let clientUA = context.CLIENTUA // 客户端user-agent
-// // promise方式
-// uniCloud.callFunction({
-//     name: 'test',
-//     data: { a: 1 }
-//   })
-//   .then(res => {});
-
-// // callback方式
-// uniCloud.callFunction({
-//     name: 'test',
-//     data: { a: 1 },
-//     success(){},
-//     fail(){},
-//     complete(){}
-// });
 
 //https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html
 
@@ -77,8 +70,8 @@ exports.main = async (event, context) => {
 // 		dataType:"json",
 // 		data: {
 // 			'grant_type' : 'authorization_code',
-// 			'appid'	  : '', //你自己小程序的appid
-// 			'secret'  : '', // 在小程序管理平台 -> 开发 -> 开发设置中
+// 			'appid'	  : 'wx16606cb75f1c42a4', //你自己小程序的appid
+// 			'secret'  : 'c7187d6ea6aa441e4a9f75c793b310cf', // 在小程序管理平台 -> 开发 -> 开发设置中
 // 			'js_code' : event.js_code // wx.login 拿到的code
 // 		}
 // 	});

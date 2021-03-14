@@ -41,7 +41,7 @@ function formatDateToYYYYMMDDHHMMSS(){
 		month=month.toString();
 	}
 	
-	var day=date.getDay();
+	var day=date.getDate();
 	if(day<10){
 		day='0'+day;
 	}else{
@@ -50,7 +50,7 @@ function formatDateToYYYYMMDDHHMMSS(){
 	var hour=date.getHours().toString();
 	var min=date.getMinutes().toString();
 	var seconds=date.getSeconds().toString();
-	
+	console.log(year+month+day+hour+min+seconds);
 	return year+month+day+hour+min+seconds;
 }
 
