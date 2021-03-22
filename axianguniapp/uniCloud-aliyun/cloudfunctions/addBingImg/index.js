@@ -32,17 +32,17 @@ exports.main = async (event, context) => {
 	
 	if(queryRes.affectedDocs>0 && queryRes.data!=undefined && queryRes.data.length>0){
 		//var strToBase64 = new Buffer(JSON.stringify(queryRes)).toString('base64');
-		let callFunctionResult = await uniCloud.callFunction({
-		    name: "apiLogger",
-		    data: { 
-			logLevel: "Info",
-			creator: "addBingImg",
-			exception: "",
-			message: "",
-			inputArgs:JSON.stringify(queryRes),
-			outArgs: "",
-			},
-		})
+		// let callFunctionResult = await uniCloud.callFunction({
+		//     name: "apiLogger",
+		//     data: { 
+		// 	logLevel: "Info",
+		// 	creator: "addBingImg",
+		// 	exception: "",
+		// 	message: "",
+		// 	inputArgs:JSON.stringify(queryRes),
+		// 	outArgs: "",
+		// 	},
+		// })
 		return queryRes;
 	}
 	else

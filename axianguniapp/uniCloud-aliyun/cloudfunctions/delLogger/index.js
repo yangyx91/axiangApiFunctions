@@ -6,7 +6,7 @@ const {
 const db=uniCloud.database()
 exports.main = async (event, context) => {
 	
-	let imgId="";
+	let eventId="";
 	let body = event.body
 	if(event.isBase64Encoded){
 	      body = Buffer.from(body)
@@ -16,9 +16,10 @@ exports.main = async (event, context) => {
 			const param = JSON.parse(body);
 			//event为客户端上传的参数
 			
-			if(param.imgId!=undefined && param.imgId!=''){
-				imgId=param.imgId;
+			if(param.eventId!=undefined && param.eventId!=''){
+				eventId=param.eventId;
 			}
+			
 		}catch(e){
 			return {
 				status: -1,
@@ -27,20 +28,21 @@ exports.main = async (event, context) => {
 		}
 	}
 	
-	if(imgId!=''){
-		const collection=db.collection("bingImgs");
-		let res=await collection.where({"imgId":imgId}).remove();
-		return res
+	if(eventId!=''){
+		const collection=db.collection("logs");
 		
+		let res=await collection.where({"eventId":eventId}).remove();
+		
+		return res
 	}else{
 		return {
 			status: -2,
-			msg: 'imgId为空'
+			msg: 'eventId为空'
 		}
 	}
 	
 };
 
 
-// https://72617af9-beba-4a09-8f3a-1e026fd1eff9.bspapp.com/http/delBingImgs
-// https://openapi.axiangblog.com/delBingImgs/v1/
+// https://72617af9-beba-4a09-8f3a-1e026fd1eff9.bspapp.com/http/delLogger
+// https://openapi.axiangblog.com/delLogger/v1

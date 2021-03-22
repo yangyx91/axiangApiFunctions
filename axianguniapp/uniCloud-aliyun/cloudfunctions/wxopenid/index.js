@@ -34,6 +34,18 @@ exports.main = async (event, context) => {
 			'js_code' : code // wx.login 拿到的code
 		}
 	});
+	
+	let callFunctionResult = await uniCloud.callFunction({
+	    name: "apiLogger",
+	    data: { 
+		logLevel: "Info",
+		creator: "wxopenid",
+		exception: "",
+		message: "",
+		inputArgs:'js_code:'+code,
+		outArgs: res.data,
+		},
+	})
 	//返回数据给客户端
 	return res.data
 };
