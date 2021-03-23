@@ -1,0 +1,41 @@
+// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"PostTypeId":{
+			"bsonType":"string",
+			"description":"分类ID"
+		},
+		"PostType":{
+			"bsonType":"string",
+			"description":"分类名称"
+		},
+		"PostTypeLevel":{
+			"bsonType":"int",
+			"description":"分类级别"
+		},
+		"PostTypeParentId":{
+			"bsonType":"string",
+			"description":"分类父级"
+		},
+		"Author":{
+			"bsonType":"string",
+			"description":"作者",
+			"defaultValue":"象叔叔"
+		},
+		"PostTypeDate":{
+			"bsonType":"string",
+			"description":"创建日期"
+		}
+	}
+}

@@ -18,9 +18,9 @@ exports.main = async (event, context) => {
 	let clientIP = context.CLIENTIP // 客户端ip信息
 	let clientUA = context.CLIENTUA // 客户端user-agent
 	//event为客户端上传的参数
-	let body = event.body
+	let body = event.body;
 	if(event.isBase64Encoded){
-	      body = Buffer.from(body)
+	      body = Buffer.from(body);
 	}
 	if(body!=null){
 		try{

@@ -35,20 +35,20 @@ exports.main = async (event, context) => {
 		}
 	});
 	
-	let callFunctionResult = await uniCloud.callFunction({
-	    name: "apiLogger",
-	    data: { 
-		logLevel: "Info",
-		creator: "wxopenid",
-		exception: "",
-		message: "",
-		inputArgs:'js_code:'+code,
-		outArgs: res.data,
-		},
-	})
+	// let callFunctionResult = await uniCloud.callFunction({
+	//     name: "apiLogger",
+	//     data: { 
+	// 	logLevel: "Info",
+	// 	creator: "wxopenid",
+	// 	exception: "",
+	// 	message: "",
+	// 	inputArgs:'js_code:'+code,
+	// 	outArgs: res.data,
+	// 	},
+	// })
 	//返回数据给客户端
 	return res.data
 };
 
 //https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html
-//https://72617af9-beba-4a09-8f3a-1e026fd1eff9.bspapp.com/http/wxopenid
+//https://5f910eba-d66b-4a7f-803e-46465dd1179a.bspapp.com/http/wxopenid
