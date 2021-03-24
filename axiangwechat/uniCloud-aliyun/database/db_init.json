@@ -12,7 +12,8 @@
 			"Tags":"",
 			"Thumbnail":"",
 			"IsTop":false,
-			"PostType":""
+			"PostType":"",
+			"Topic":""
 		}
 	},
 	"wxPostTypes":{

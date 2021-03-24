@@ -52,6 +52,10 @@
 		"PostType":{
 			"bsonType":"string",
 			"description":"内容分类"
+		},
+		"Topic":{
+			"bsonType":"string",
+			"description":"内容话题"
 		}
 	}
 }

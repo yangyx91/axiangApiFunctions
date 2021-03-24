@@ -19,6 +19,7 @@ exports.main = async (event, context) => {
 		"Thumbnail":"",
 		"IsTop":false,
 		"PostType":"",
+		"Topic":""
 	};
 	
 	let body = event.body;
@@ -58,6 +59,10 @@ exports.main = async (event, context) => {
 
 			if(param.PostType!=undefined && param.PostType!=''){
 				wxPost.PostType=param.PostType;
+			}
+			
+			if(param.Topic!=undefined && param.Topic!=''){
+				wxPost.Topic=param.Topic;
 			}
 			
 		}catch(e){
