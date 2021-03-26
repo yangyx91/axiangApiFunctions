@@ -33,6 +33,12 @@ function formatDateToYYYYMMDD(){
 
 function formatDateToYYYYMMDDHHMMSS(){
 	var date=new Date();
+	
+	const targetTimezone = -8;
+	const dif = new Date().getTimezoneOffset();
+	let east8time = date.getTime() + dif * 60 * 1000 - (targetTimezone * 60 * 60 * 1000);
+	date=new Date(east8time);
+	  
 	var year=date.getFullYear();
 	var month=date.getMonth()+1;
 	if(month<10){
@@ -48,8 +54,17 @@ function formatDateToYYYYMMDDHHMMSS(){
 		day=day.toString();
 	}
 	var hour=date.getHours().toString();
+	if(date.getHours()<10){
+		hour='0'+hour;
+	}
 	var min=date.getMinutes().toString();
+	if(date.getMinutes()<10){
+		min='0'+min;
+	}
 	var seconds=date.getSeconds().toString();
+	if(date.getSeconds()<10){
+		seconds='0'+seconds;
+	}
 	console.log(year+month+day+hour+min+seconds);
 	return year+month+day+hour+min+seconds;
 }
