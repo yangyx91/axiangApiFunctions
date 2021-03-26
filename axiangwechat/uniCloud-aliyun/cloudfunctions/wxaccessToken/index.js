@@ -5,56 +5,56 @@ const {
 }=require('uni-common');
 const db=uniCloud.database()
 exports.main = async (event, context) => {
-	
-	const appid='wx16606cb75f1c42a4';
-	const secret='c7187d6ea6aa441e4a9f75c793b310cf';
 	const collection=db.collection("wxAccessTokens")
-	const queryRes=await collection.where({"Appid":appid}).get()
-	if(queryRes.affectedDocs>0 && queryRes.data!=undefined && queryRes.data.length>0){
-		
-		// 获取openid 请求地址
-		const apiUrl = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+appid+'&secret='+secret;
-		// uniCloud.httpclient 发起请求
-		const res = await uniCloud.httpclient.request(apiUrl,
-		{
-			method: 'GET',
-			dataType:"json"
-		});
-		
-		if(res.data!=undefined && res.data.access_token!=undefined)
-		{
-			const upRes = await collection.doc(queryRes.data[0]._id).update({
-						  Appid:appid,
-						  AccessToken:res.data.access_token,
-						  UpdateTime:formatDateToYYYYMMDDHHMMSS()
-			});
-			const queryNewRes=await collection.where({"Appid":appid}).get()
-			return queryNewRes.data;
-		}
-	}
-	else
+	
+	//订阅号
+	const mpappid='wxbe1e31d732baba4c';
+
+	const mpqueryRes=await collection.where({"Appid":mpappid}).get()
+	if(mpqueryRes.affectedDocs>0 && mpqueryRes.data!=undefined && mpqueryRes.data.length>0)
 	{
-		// 获取openid 请求地址
-		const apiUrl = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+appid+'&secret='+secret;
+		const mpapiUrl='https://openapi.axiangblog.com/getWxToken/v1/'
 		// uniCloud.httpclient 发起请求
-		const res = await uniCloud.httpclient.request(apiUrl,
+		const mpres = await uniCloud.httpclient.request(mpapiUrl,
 		{
 			method: 'GET',
 			dataType:"json"
 		});
 		
-		if(res.data!=undefined && res.data.access_token!=undefined){
-			const addRes= await collection.add({
-						  Appid:appid,
-						  AccessToken:res.data.access_token,
+		if(mpres.data!=undefined && mpres.data.access_token!=undefined)
+		{
+			const upRes = await collection.doc(mpqueryRes.data[0]._id).update({
+						  Appid:mpappid,
+						  AccessToken:mpres.data.access_token,
 						  UpdateTime:formatDateToYYYYMMDDHHMMSS()
 			});
-			if(addRes.id!=undefined){
-				const queryNewRes=await collection.where({"Appid":appid}).get()
-				return queryNewRes.data;
-			}
 		}
 	}
+	
+	//小程序
+	const miniappid='wx16606cb75f1c42a4';
+	const miniqueryRes=await collection.where({"Appid":miniappid}).get()
+	if(miniqueryRes.affectedDocs>0 && miniqueryRes.data!=undefined && miniqueryRes.data.length>0){
+		
+		// 获取openid 请求地址
+		const miniapiUrl = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+miniappid+'&secret='+miniqueryRes.data[0].AppSecret;
+		// uniCloud.httpclient 发起请求
+		const minires = await uniCloud.httpclient.request(miniapiUrl,
+		{
+			method: 'GET',
+			dataType:"json"
+		});
+		
+		if(minires.data!=undefined && minires.data.access_token!=undefined)
+		{
+			const upRes = await collection.doc(miniqueryRes.data[0]._id).update({
+						  Appid:miniappid,
+						  AccessToken:minires.data.access_token,
+						  UpdateTime:formatDateToYYYYMMDDHHMMSS()
+			});
+		}
+	}
+	
 	return event
 };
 

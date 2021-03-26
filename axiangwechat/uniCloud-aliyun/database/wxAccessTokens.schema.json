@@ -12,9 +12,21 @@
 		"_id": {
 			"description": "ID，系统自动生成"
 		},
+		"Name":{
+			"bsonType":"string",
+			"description":"名称"
+		},
+		"Type":{
+			"bsonType":"string",
+			"description":"小程序，订阅号"
+		},
 		"Appid":{
 			"bsonType":"string",
-			"description":"小程序appId"
+			"description":"appId"
+		},
+		"AppSecret":{
+			"bsonType":"string",
+			"description":"appsecret"
 		},
 		"AccessToken":{
 			"bsonType":"string",

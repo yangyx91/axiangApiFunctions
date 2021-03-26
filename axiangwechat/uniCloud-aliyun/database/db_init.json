@@ -29,8 +29,11 @@
 	"wxAccessTokens":{
 		"data":{
 			"Appid":"wx16606cb75f1c42a4",
+			"AppSecret":"",
 			"AccessToken":"",
-			"UpdateTime":""
+			"UpdateTime":"",
+			"Name":"",
+			"Type":""
 		}
 		
 	}
