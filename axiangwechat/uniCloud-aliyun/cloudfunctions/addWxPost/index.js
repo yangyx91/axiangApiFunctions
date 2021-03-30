@@ -33,36 +33,70 @@ exports.main = async (event, context) => {
 			if(param.Title!=undefined && param.Title!=''){
 				wxPost.Title=param.Title;
 			}
+			if(param.title!=undefined && param.title!=''){
+				wxPost.Title=param.title;
+			}
 			if(param.Description!=undefined && param.Description!=''){
 				wxPost.Description=param.Description;
+			}
+			if(param.description!=undefined && param.description!=''){
+				wxPost.Description=param.description;
 			}
 
 			if(param.PostUrl!=undefined && param.PostUrl!=''){
 				wxPost.PostUrl=param.PostUrl;
 			}
+			
+			if(param.postUrl!=undefined && param.postUrl!=''){
+				wxPost.PostUrl=param.postUrl;
+			}
 
 			if(param.Author!=undefined && param.Author!=''){
 				wxPost.Author=param.Author;
+			}
+			
+			if(param.author!=undefined && param.author!=''){
+				wxPost.Author=param.author;
 			}
 
 			if(param.Tags!=undefined && param.Tags!=''){
 				wxPost.Tags=param.Tags;
 			}
+			
+			if(param.tags!=undefined && param.tags!=''){
+				wxPost.Tags=param.tags;
+			}
 
 			if(param.Thumbnail!=undefined && param.Thumbnail!=''){
 				wxPost.Thumbnail=param.Thumbnail;
 			}
+			
+			if(param.thumbnail!=undefined && param.thumbnail!=''){
+				wxPost.Thumbnail=param.thumbnail;
+			}
 
 			if(param.IsTop!=undefined){
 				wxPost.IsTop=param.IsTop;
+			}
+			
+			if(param.isTop!=undefined){
+				wxPost.IsTop=param.isTop;
 			}
 
 			if(param.PostType!=undefined && param.PostType!=''){
 				wxPost.PostType=param.PostType;
 			}
 			
+			if(param.postType!=undefined && param.postType!=''){
+				wxPost.PostType=param.postType;
+			}
+			
 			if(param.Topic!=undefined && param.Topic!=''){
 				wxPost.Topic=param.Topic;
+			}
+			
+			if(param.topic!=undefined && param.topic!=''){
+				wxPost.Topic=param.topic;
 			}
 			
 		}catch(e){
