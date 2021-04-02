@@ -9,6 +9,7 @@ exports.main = async (event, context) => {
 	let pageSize=10;
 	let postType='';
 	let postId='';
+	let title='';
 	let body = event.body
 	if(event.isBase64Encoded){
 	      body = Buffer.from(body)
@@ -38,6 +39,25 @@ exports.main = async (event, context) => {
 				postId=param.postId;
 			}
 			
+			//模糊搜索
+			
+			if(param.title!=undefined && param.title!='' ){
+				title=param.title;
+			}
+			
+			if(param.Title!=undefined && param.Title!='' ){
+				title=param.Title;
+			}
+			
+			if(param.keywords!=undefined && param.keywords!='' ){
+				title=param.keywords;
+			}
+			
+			if(param.Keywords!=undefined && param.Keywords!='' ){
+				title=param.Keywords;
+			}
+			
+			
 		}catch(e){
 			
 		}
@@ -50,6 +70,15 @@ exports.main = async (event, context) => {
 		}).orderBy("PostDate", "desc").skip((page-1)*pageSize).limit(pageSize).get();
 		//返回数据给客户端
 		return queryRes
+	}
+	else if(title!=''){
+		const dbCmd=db.command
+		const queryRes=await collection.where(db.command.or(
+		{"Title":title},{"Description":title}
+		)).get()
+		if(queryRes.affectedDocs>0 && queryRes.data!=undefined && queryRes.data.length>0){
+			return queryRes.data;
+		}
 	}
 	else if(postId!='')
 	{
