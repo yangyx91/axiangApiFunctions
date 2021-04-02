@@ -63,7 +63,7 @@ exports.main = async (event, context) => {
 		}
 	}
 	
-	const collection=db.collection("wxPostTypes");
+	const collection=db.collection("wxPosts");
 	if(postType!=''){
 		let queryRes=await collection.where({
 			PostType:postType

@@ -108,8 +108,12 @@ exports.main = async (event, context) => {
 				wxPost.Topic=param.topic;
 			}
 			
-			if(param.postTypeDate!=undefined && param.postTypeDate!=''){
-				wxPost.PostTypeDate=param.postTypeDate;
+			if(param.PostDate!=undefined && param.PostDate!=''){
+				wxPost.PostDate=param.PostDate;
+			}
+			
+			if(param.postDate!=undefined && param.postDate!=''){
+				wxPost.PostDate=param.postDate;
 			}
 			
 		}catch(e){
