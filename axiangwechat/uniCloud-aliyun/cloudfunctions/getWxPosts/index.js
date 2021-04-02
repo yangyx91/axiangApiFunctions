@@ -73,12 +73,13 @@ exports.main = async (event, context) => {
 	}
 	else if(title!=''){
 		const dbCmd=db.command
-		const queryRes=await collection.where(db.command.or(
-		{"Title":title},{"Description":title}
-		)).get()
-		if(queryRes.affectedDocs>0 && queryRes.data!=undefined && queryRes.data.length>0){
-			return queryRes.data;
+		let searchRes=await collection.where({
+			Title:new RegExp(title)
+			}).get()
+		if(searchRes.affectedDocs>0 && searchRes.data!=undefined && searchRes.data.length>0){
+			return searchRes;
 		}
+		return 1;
 	}
 	else if(postId!='')
 	{
