@@ -35,7 +35,8 @@ exports.main = async (event, context) => {
 	const collection=db.collection("wxPostTypes");
 	if(postType!=''){
 		let queryRes=await collection.where({
-			PostTypeLevel:1
+			PostTypeLevel:1,
+			PostType:postType
 		}).orderBy("PostTypeDate", "desc").get();
 		//返回数据给客户端
 		return queryRes
@@ -48,9 +49,7 @@ exports.main = async (event, context) => {
 		return queryTypeRes
 	}
 	else{
-		let pageRes=await collection.where({
-			PostType:postType
-		}).orderBy("PostTypeDate", "desc").get();
+		let pageRes=await collection.orderBy("PostTypeDate", "desc").get();
 		//返回数据给客户端
 		return pageRes
 	}

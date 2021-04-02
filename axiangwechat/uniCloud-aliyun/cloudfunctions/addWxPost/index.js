@@ -108,14 +108,18 @@ exports.main = async (event, context) => {
 				wxPost.Topic=param.topic;
 			}
 			
+			if(param.postTypeDate!=undefined && param.postTypeDate!=''){
+				wxPost.PostTypeDate=param.postTypeDate;
+			}
+			
 		}catch(e){
 			
 		}
 	}
 	
-	
+	const collection=db.collection("wxPosts");
 	 if(wxPost.PostUrl!=undefined && wxPost.PostUrl!=''&& wxPost.PostId==''){
-		 const collection=db.collection("wxPosts");
+		 
 		 wxPost.PostId=postId;
 		 const addRes= await collection.add(wxPost);
 		 if(addRes.id!=undefined){
@@ -131,6 +135,7 @@ exports.main = async (event, context) => {
 		 if(queryPostRes.affectedDocs>0 && queryPostRes.data!=undefined && queryPostRes.data.length>0)
 		 {
 			const upRes = await collection.doc(queryPostRes.data[0]._id).update(wxPost);
+			return upRes
 		 }
 	 }
 	 else{

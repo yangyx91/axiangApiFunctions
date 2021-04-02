@@ -70,9 +70,8 @@ exports.main = async (event, context) => {
 		}
 	}
 	
-	
+	const collection=db.collection("wxPostTypes");
 	 if(wxPostType.PostType!=undefined && wxPostType.PostType!=''&& wxPostType.PostTypeId==''){
-		 const collection=db.collection("wxPostTypes");
 		 wxPostType.PostTypeId=postTypeId;
 		 const addRes= await collection.add(wxPostType);
 		 if(addRes.id!=undefined){
@@ -87,6 +86,7 @@ exports.main = async (event, context) => {
 		 if(queryPostRes.affectedDocs>0 && queryPostRes.data!=undefined && queryPostRes.data.length>0)
 		 {
 		 	 const upRes = await collection.doc(queryPostRes.data[0]._id).update(wxPostType);
+			 return upRes
 		 }
 	 }
 	 else{

@@ -43,7 +43,7 @@ exports.main = async (event, context) => {
 		}
 	}
 	
-	const collection=db.collection("wxPosts");
+	const collection=db.collection("wxPostTypes");
 	if(postType!=''){
 		let queryRes=await collection.where({
 			PostType:postType
@@ -67,4 +67,4 @@ exports.main = async (event, context) => {
 };
 
 // https://5f910eba-d66b-4a7f-803e-46465dd1179a.bspapp.com/http/getWxPosts
-// https://openapi.axiangblog.com/getWxPosts/v1/
+// https://openapi.axiangblog.com/getWxPostTypes/v1/
