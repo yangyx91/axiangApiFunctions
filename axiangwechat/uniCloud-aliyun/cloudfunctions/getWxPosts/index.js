@@ -8,6 +8,7 @@ exports.main = async (event, context) => {
 	let page=1;
 	let pageSize=10;
 	let postType='';
+	let postId='';
 	let body = event.body
 	if(event.isBase64Encoded){
 	      body = Buffer.from(body)
@@ -28,6 +29,15 @@ exports.main = async (event, context) => {
 			if(param.postType!=undefined && param.postType!='' ){
 				postType=param.postType;
 			}
+			
+			if(param.PostId!=undefined && param.PostId!='' ){
+				postId=param.PostId;
+			}
+			
+			if(param.postId!=undefined && param.postId!='' ){
+				postId=param.postId;
+			}
+			
 		}catch(e){
 			
 		}
@@ -40,7 +50,16 @@ exports.main = async (event, context) => {
 		}).orderBy("PostDate", "desc").skip((page-1)*pageSize).limit(pageSize).get();
 		//返回数据给客户端
 		return queryRes
-	}else{
+	}
+	else if(postId!='')
+	{
+		let postIdRes=await collection.where({
+			PostId:postId
+		}).get();
+		//返回数据给客户端
+		return postIdRes
+	}
+	else{
 		let pageRes=await collection.orderBy("PostDate", "desc").skip((page-1)*pageSize).limit(pageSize).get();
 		//返回数据给客户端
 		return pageRes
