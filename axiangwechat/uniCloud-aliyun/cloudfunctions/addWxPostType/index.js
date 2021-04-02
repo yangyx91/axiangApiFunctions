@@ -9,7 +9,7 @@ exports.main = async (event, context) => {
 	const postTypeId=formatDateToYYYYMMDDHHMMSS();
 	const postTypeDate=formatDateToYYYYMMDD();
 	const wxPostType={
-		"PostTypeId":postTypeId,
+		"PostTypeId":"",
 		"PostType":"",
 		"PostTypeLevel":1,
 		"PostTypeParentId":"",
@@ -25,26 +25,55 @@ exports.main = async (event, context) => {
 		try{
 			const param = JSON.parse(body);
 			//event为客户端上传的参数
+			if(param.PostTypeId!=undefined && param.PostTypeId!=''){
+				wxPostType.PostTypeId=param.PostTypeId;
+			}
+			
+			if(param.postTypeId!=undefined && param.postTypeId!=''){
+				wxPostType.PostTypeId=param.postTypeId;
+			}
+			
 			if(param.PostType!=undefined && param.PostType!=''){
 				wxPostType.PostType=param.PostType;
 			}
+			
+			if(param.postType!=undefined && param.postType!=''){
+				wxPostType.PostType=param.postType;
+			}
+			
 			if(param.PostTypeLevel!=undefined && param.PostTypeLevel>0){
 				wxPostType.PostTypeLevel=param.PostTypeLevel;
 			}
+			
+			if(param.postTypeLevel!=undefined && param.postTypeLevel>0){
+				wxPostType.PostTypeLevel=param.postTypeLevel;
+			}
+			
 			if(param.PostTypeParentId!=undefined && param.PostTypeParentId!=''){
 				wxPostType.PostTypeParentId=param.PostTypeParentId;
 			}
+			
+			if(param.postTypeParentId!=undefined && param.postTypeParentId!=''){
+				wxPostType.PostTypeParentId=param.postTypeParentId;
+			}
+			
 			if(param.Author!=undefined && param.Author!=''){
 				wxPostType.Author=param.Author;
 			}
+			
+			if(param.author!=undefined && param.author!=''){
+				wxPostType.Author=param.author;
+			}
+			
 		}catch(e){
 			
 		}
 	}
 	
 	
-	 if(wxPostType.PostType!=undefined && wxPostType.PostType!=''){
+	 if(wxPostType.PostType!=undefined && wxPostType.PostType!=''&& wxPostType.PostTypeId==''){
 		 const collection=db.collection("wxPostTypes");
+		 wxPostType.PostTypeId=postTypeId;
 		 const addRes= await collection.add(wxPostType);
 		 if(addRes.id!=undefined){
 		 		  const queryRes=await collection.where({"PostTypeId":postTypeId}).get()
@@ -52,7 +81,15 @@ exports.main = async (event, context) => {
 		 }
 		 return addRes	
 		 
-	 }else{
+	 }else if(wxPostType.PostType!=undefined && wxPostType.PostType!=''&& wxPostType.PostTypeId!=''){
+		 
+		 const queryPostRes=await collection.where({"PostTypeId":wxPostType.PostTypeId}).get()
+		 if(queryPostRes.affectedDocs>0 && queryPostRes.data!=undefined && queryPostRes.data.length>0)
+		 {
+		 	 const upRes = await collection.doc(queryPostRes.data[0]._id).update(wxPostType);
+		 }
+	 }
+	 else{
 		 
 		 return {
 			 "affectedDocs":0,

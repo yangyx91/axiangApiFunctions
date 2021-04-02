@@ -5,9 +5,9 @@ const {
 }=require('uni-common');
 const db=uniCloud.database()
 exports.main = async (event, context) => {
-	let page=1;
-	let pageSize=10;
+	
 	let postType='';
+	let postTypeId='';
 	let body = event.body
 	if(event.isBase64Encoded){
 	      body = Buffer.from(body)
@@ -17,13 +17,15 @@ exports.main = async (event, context) => {
 			const param = JSON.parse(body);
 			//event为客户端上传的参数
 			
-			if(param.page!=undefined && param.page>=1){
-				page=param.page;
+			if(param.postType!=undefined && param.postType!='' ){
+				postType=param.postType;
 			}
 			
-			if(param.pageSize!=undefined && param.pageSize>=1){
-				pageSize=param.pageSize;
+			if(param.postTypeId!=undefined && param.postTypeId!='' ){
+				postTypeId=param.postTypeId;
 			}
+			
+			
 			
 		}catch(e){
 			
@@ -34,11 +36,21 @@ exports.main = async (event, context) => {
 	if(postType!=''){
 		let queryRes=await collection.where({
 			PostTypeLevel:1
-		}).orderBy("PostTypeDate", "desc").skip((page-1)*pageSize).limit(pageSize).get();
+		}).orderBy("PostTypeDate", "desc").get();
 		//返回数据给客户端
 		return queryRes
-	}else{
-		let pageRes=await collection.orderBy("PostTypeDate", "desc").skip((page-1)*pageSize).limit(pageSize).get();
+	}
+	else if(postTypeId!=''){
+		let queryTypeRes=await collection.where({
+			PostTypeId:postTypeId
+		}).get();
+		//返回数据给客户端
+		return queryTypeRes
+	}
+	else{
+		let pageRes=await collection.where({
+			PostType:postType
+		}).orderBy("PostTypeDate", "desc").get();
 		//返回数据给客户端
 		return pageRes
 	}

@@ -9,7 +9,7 @@ exports.main = async (event, context) => {
 	const postId=formatDateToYYYYMMDDHHMMSS();
 	const postDate=formatDateToYYYYMMDD();
 	const wxPost={
-		"PostId":postId,
+		"PostId":"",
 		"Title":"",
 		"Description":"",
 		"PostUrl":"",
@@ -30,6 +30,15 @@ exports.main = async (event, context) => {
 		try{
 			const param = JSON.parse(body);
 			//event为客户端上传的参数
+			
+			if(param.PostId!=undefined && param.PostId!=''){
+				wxPost.PostId=param.PostId;
+			}
+			
+			if(param.postId!=undefined && param.postId!=''){
+				wxPost.PostId=param.postId;
+			}
+			
 			if(param.Title!=undefined && param.Title!=''){
 				wxPost.Title=param.Title;
 			}
@@ -105,8 +114,9 @@ exports.main = async (event, context) => {
 	}
 	
 	
-	 if(wxPost.PostUrl!=undefined && wxPost.PostUrl!=''){
+	 if(wxPost.PostUrl!=undefined && wxPost.PostUrl!=''&& wxPost.PostId==''){
 		 const collection=db.collection("wxPosts");
+		 wxPost.PostId=postId;
 		 const addRes= await collection.add(wxPost);
 		 if(addRes.id!=undefined){
 		 		  const queryRes=await collection.where({"PostId":postId}).get()
@@ -114,7 +124,16 @@ exports.main = async (event, context) => {
 		 }
 		 return addRes	
 		 
-	 }else{
+	 }
+	 else if(wxPost.PostUrl!=undefined && wxPost.PostUrl!=''&& wxPost.PostId!=''){
+		 
+		 const queryPostRes=await collection.where({"PostId":wxPost.PostId}).get()
+		 if(queryPostRes.affectedDocs>0 && queryPostRes.data!=undefined && queryPostRes.data.length>0)
+		 {
+			const upRes = await collection.doc(queryPostRes.data[0]._id).update(wxPost);
+		 }
+	 }
+	 else{
 		 
 		 return {
 			 "affectedDocs":0,

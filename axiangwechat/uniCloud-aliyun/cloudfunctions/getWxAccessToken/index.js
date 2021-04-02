@@ -6,12 +6,20 @@ const {
 const db=uniCloud.database()
 exports.main = async (event, context) => {
 	
-	const a='wxbe1e31d732baba4c';
-	const appid='wx16606cb75f1c42a4';
-	const collection=db.collection("wxAccessTokens")
+	const miniProgramAppid='wxbe1e31d732baba4c';
+	const wxAppid='wx16606cb75f1c42a4';
+	//限定返回字段
+	const collection=db.collection("wxAccessTokens").field({
+		"Appid":true,
+		"AccessToken":true,
+		"UpdateTime":true,
+		"Name":true,
+		"Type":true,
+		 "_id": false
+	})
 	const dbCmd=db.command
 	const queryRes=await collection.where(db.command.or(
-	{"Appid":appid},{"Appid":a}
+	{"Appid":wxAppid},{"Appid":miniProgramAppid}
 	)).get()
 	if(queryRes.affectedDocs>0 && queryRes.data!=undefined && queryRes.data.length>0){
 		return queryRes.data;
