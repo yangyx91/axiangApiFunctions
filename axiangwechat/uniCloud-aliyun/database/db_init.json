@@ -43,5 +43,19 @@
 		"FileType":"jpg",
 		"FileSize":"421600",
 		"UploadDate":"2021-04-09"
+	},
+	"wxGuestBooks":{
+		"PostId":"",
+		"PostGroupId":"",
+		"OpenId":"",
+		"NickName":"",
+		"HeadImgUrl":"",
+		"Title":"",
+		"Detail":"",
+		"Attachment":"",
+		"IsQuestion":false,
+		"IsAnswer":true,
+		"Topic":"",
+		"PostDate":""
 	}
 }

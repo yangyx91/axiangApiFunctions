@@ -1,0 +1,64 @@
+// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"PostId":{
+			"bsonType":"string",
+			"description":"帖子ID"
+		},
+		"PostGroupId":{
+			"bsonType":"string",
+			"description":"帖子分组"
+		},
+		"OpenId":{
+			"bsonType":"string",
+			"description":"用户ID"
+		},
+		"NickName":{
+			"bsonType":"string",
+			"description":"用户名"
+		},
+		"HeadImgUrl":{
+			"bsonType":"string",
+			"description":"头像"
+		},
+		"Title":{
+			"bsonType":"string",
+			"description":"帖子标题"
+		},
+		"Detail":{
+			"bsonType":"string",
+			"description":"帖子内容"
+		},
+		"Attachment":{
+			"bsonType":"string",
+			"description":"帖子内容附件"
+		},
+		"IsQuestion":{
+			"bsonType":"bool",
+			"description":"是否发帖"
+		},
+		"IsAnswer":{
+			"bsonType":"bool",
+			"description":"是否回帖"
+		},
+		"Topic":{
+			"bsonType":"string",
+			"description":"话题"
+		},
+		"PostDate":{
+			"bsonType":"string",
+			"description":"帖子ID"
+		}
+	}
+}
