@@ -36,10 +36,14 @@ exports.main = async (event, context) => {
 	try{
 		
 		if(imgUrl!=''&& list.length>0){
+			
 			// 云函数删除文件示例代码
 			let result = await uniCloud.deleteFile({
 			    fileList: list
 			});
+			
+			const collection=db.collection("wxUploads");
+			let res=await collection.where({"FileID":imgUrl}).remove();
 			return result
 		}
 	}
@@ -53,6 +57,6 @@ exports.main = async (event, context) => {
 };
 
 
-//https://5f910eba-d66b-4a7f-803e-46465dd1179a.bspapp.com/http/deleteFile
-//https://openapi.axiangblog.com/deleteFile/v1/
+//https://5f910eba-d66b-4a7f-803e-46465dd1179a.bspapp.com/http/deleteUploadImg
+//https://openapi.axiangblog.com/deleteUploadImg/v1/
 

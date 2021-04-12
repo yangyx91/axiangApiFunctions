@@ -1,0 +1,36 @@
+// 文档教程: https://uniapp.dcloud.net.cn/uniCloud/schema
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"FileID":{
+			"bsonType":"string",
+			"description":"文件唯一ID"
+		},
+		"FileName":{
+			"bsonType":"string",
+			"description":"文件名"
+		},
+		"FileType":{
+			"bsonType":"string",
+			"description":"文件类型"
+		},
+		"FileSize":{
+			"bsonType":"string",
+			"description":"文件大小"
+		},
+		"UploadDate":{
+			"bsonType":"string",
+			"description":"上传日期"
+		}
+	}
+}

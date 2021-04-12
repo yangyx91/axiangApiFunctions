@@ -5,7 +5,7 @@ const {
 }=require('uni-common');
 const db=uniCloud.database()
 exports.main = async (event, context) => {
-	
+	const collection=db.collection("wxUploads")
 	let imgId="";
 	let imgUrl="";
 	let imgName="";
@@ -43,12 +43,20 @@ exports.main = async (event, context) => {
 		
 		if(imgBase64!=''&& imgBase64.length>4 && (imgId!=''||imgName!='')){
 			
-			const fs = require("fs");
 			let uploadRes = await uniCloud.uploadFile({
 			    cloudPath: imgName,
 			    fileContent: Buffer.from(imgBase64, "base64")
 			});
-			
+			if(uploadRes!=null&& uploadRes.fileID!=undefined && uploadRes.fileID!=''){
+				var wxUpload={
+					FileID:uploadRes.fileID,
+					FileName:imgName,
+					FileType:imgName.split('.')[1],
+					FileSize:Buffer.from(imgBase64, "base64").length,
+					UploadDate:formatDateToYYYYMMDD()
+				};
+				await collection.add(wxUpload);
+			}
 			return uploadRes;
 		}
 		
@@ -65,6 +73,18 @@ exports.main = async (event, context) => {
 				    cloudPath: imgName,
 				    fileContent: res.data
 				});
+				if(result!=null && result.fileID!=undefined && result.fileID!=''){
+					
+					var upload={
+						FileID:result.fileID,
+						FileName:imgName,
+						FileType:imgName.split('.')[1],
+						FileSize:res.data.length,
+						UploadDate:formatDateToYYYYMMDD()
+					};
+					await collection.add(upload);
+					
+				}
 				return result;
 			}
 			else{
