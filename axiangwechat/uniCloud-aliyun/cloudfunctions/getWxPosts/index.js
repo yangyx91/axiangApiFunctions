@@ -97,4 +97,4 @@ exports.main = async (event, context) => {
 };
 
 // https://5f910eba-d66b-4a7f-803e-46465dd1179a.bspapp.com/http/getWxPosts
-// https://openapi.axiangblog.com/getWxPosts/v1/
+// https://openapi.axiangblog.com/wxPostApi/v1/getWxPosts

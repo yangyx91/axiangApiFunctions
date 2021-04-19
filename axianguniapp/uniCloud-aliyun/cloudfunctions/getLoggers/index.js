@@ -35,4 +35,4 @@ exports.main = async (event, context) => {
 };
 
 // https://72617af9-beba-4a09-8f3a-1e026fd1eff9.bspapp.com/http/getLoggers
-// https://openapi.axiangblog.com/getLoggers/v1/
+// https://openapi.axiangblog.com/loggersApi/v1/getLoggers

@@ -19,6 +19,7 @@ exports.main = async (event, context) => {
 	let clientUA = context.CLIENTUA // 客户端user-agent
 	//event为客户端上传的参数
 	let body = event.body;
+	//event.path="/add";
 	if(event.isBase64Encoded){
 	      body = Buffer.from(body);
 	}
@@ -98,14 +99,8 @@ exports.main = async (event, context) => {
 	const collection=db.collection("logs")
 	const addRes= await collection.add(log);
 	console.log("addRes",addRes);
-	return addRes	
+	return event	
 };
 
-
-// https://72617af9-beba-4a09-8f3a-1e026fd1eff9.bspapp.com/http/addBingImg
-// https://openapi.axiangblog.com/addBingImg/v1/
-
-
-
 // https://72617af9-beba-4a09-8f3a-1e026fd1eff9.bspapp.com/http/apiLogger
-// https://openapi.axiangblog.com/apiLogger/v1/
+// https://openapi.axiangblog.com/loggersApi/v1/getLoggers
