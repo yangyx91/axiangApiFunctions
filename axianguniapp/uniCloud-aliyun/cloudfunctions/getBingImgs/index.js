@@ -35,4 +35,4 @@ exports.main = async (event, context) => {
 };
 
 // https://72617af9-beba-4a09-8f3a-1e026fd1eff9.bspapp.com/http/getBingImgs
-// https://openapi.axiangblog.com/bingImgsApi/v1/getBingImgs
+// https://openapi.axiangblog.cn/bingImgsApi/v1/getBingImgs

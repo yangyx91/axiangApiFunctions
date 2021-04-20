@@ -30,4 +30,4 @@ exports.main = async (event, context) => {
 
 //https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/access-token/auth.getAccessToken.html
 //https://5f910eba-d66b-4a7f-803e-46465dd1179a.bspapp.com/http/getWxAccessToken
-// https://openapi.axiangblog.com/getWxAccessToken/v1/
+// https://openapi.axiangblog.cn/getWxAccessToken/v1/

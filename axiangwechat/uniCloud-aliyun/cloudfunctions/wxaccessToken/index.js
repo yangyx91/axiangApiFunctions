@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
 	const mpqueryRes=await collection.where({"Appid":mpappid}).get()
 	if(mpqueryRes.affectedDocs>0 && mpqueryRes.data!=undefined && mpqueryRes.data.length>0)
 	{
-		const mpapiUrl='https://openapi.axiangblog.com/getWxToken/v1/'
+		const mpapiUrl='https://openapi.axiangblog.cn/getWxToken/v1/'
 		// uniCloud.httpclient 发起请求
 		const mpres = await uniCloud.httpclient.request(mpapiUrl,
 		{
