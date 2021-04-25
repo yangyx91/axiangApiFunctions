@@ -13,7 +13,8 @@
 			"Thumbnail":"",
 			"IsTop":false,
 			"PostType":"随笔分类",
-			"Topic":""
+			"Topic":"",
+			"Content":""
 		}
 	},
 	"wxPostTypes":{

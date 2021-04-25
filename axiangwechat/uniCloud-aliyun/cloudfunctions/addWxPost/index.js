@@ -22,6 +22,52 @@ exports.main = async (event, context) => {
 		"Topic":""
 	};
 	
+	if(event.PostId!=undefined && event.PostId!=''){
+		wxPost.PostId=event.PostId;
+	}
+	
+	if(event.Title!=undefined && event.Title!=''){
+		wxPost.Title=event.Title;
+	}
+	
+	if(event.Description!=undefined && event.Description!=''){
+		wxPost.Description=event.Description;
+	}
+	
+	if(event.PostUrl!=undefined && event.PostUrl!=''){
+		wxPost.PostUrl=event.PostUrl;
+	}
+	
+	if(event.Author!=undefined && event.Author!=''){
+		wxPost.Author=event.Author;
+	}
+	
+	
+	if(event.Tags!=undefined && event.Tags!=''){
+		wxPost.Tags=event.Tags;
+	}
+	
+	
+	if(event.Thumbnail!=undefined && event.Thumbnail!=''){
+		wxPost.Thumbnail=event.Thumbnail;
+	}
+	
+	if(event.IsTop!=undefined){
+		wxPost.IsTop=event.IsTop;
+	}
+	
+	if(event.PostType!=undefined && event.PostType!=''){
+		wxPost.PostType=event.PostType;
+	}
+	
+	if(event.Topic!=undefined && event.Topic!=''){
+		wxPost.Topic=event.Topic;
+	}
+	
+	if(event.Content!=undefined && event.Content!=''){
+		wxPost.Content=event.Content;
+	}
+	
 	let body = event.body;
 	if(event.isBase64Encoded){
 	      body = Buffer.from(body);
@@ -116,6 +162,14 @@ exports.main = async (event, context) => {
 				wxPost.PostDate=param.postDate;
 			}
 			
+			if(param.content!=undefined && param.content!=''){
+				wxPost.Content=param.content;
+			}
+			
+			if(param.Content!=undefined && param.Content!=''){
+				wxPost.Content=param.Content;
+			}
+			
 		}catch(e){
 			
 		}
@@ -143,7 +197,6 @@ exports.main = async (event, context) => {
 		 }
 	 }
 	 else{
-		 
 		 return {
 			 "affectedDocs":0,
 			 "data":[],

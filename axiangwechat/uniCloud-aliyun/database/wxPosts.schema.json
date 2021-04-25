@@ -24,6 +24,10 @@
 			"bsonType":"string",
 			"description":"内容摘要"
 		},
+		"Content":{
+			"bsonType":"string",
+			"description":"html富文本"
+		},
 		"PostUrl":{
 			"bsonType":"string",
 			"description":"内容链接"

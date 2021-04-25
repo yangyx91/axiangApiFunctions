@@ -26,7 +26,8 @@ exports.main = async (event, context) => {
 	const res = await uniCloud.httpclient.request(apiUrl,
 	{
 		method: 'POST',
-		dataType:"json",
+		contentType:'json',
+		dataType:'json',
 		data: {
 			'grant_type' : 'authorization_code',
 			'appid'	  : 'wx16606cb75f1c42a4', //你自己小程序的appid
