@@ -65,8 +65,9 @@ function formatDateToYYYYMMDDHHMMSS(){
 	if(date.getSeconds()<10){
 		seconds='0'+seconds;
 	}
-	console.log(year+month+day+hour+min+seconds);
-	return year+month+day+hour+min+seconds;
+	var milSeconds=date.getMilliseconds().toString();
+	console.log(year+month+day+hour+min+seconds+milSeconds);
+	return year+month+day+hour+min+seconds+milSeconds;
 }
 
 function stringToArrayBuffer(str) {
