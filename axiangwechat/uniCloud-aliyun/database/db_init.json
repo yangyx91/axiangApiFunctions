@@ -14,7 +14,9 @@
 			"IsTop":false,
 			"PostType":"随笔分类",
 			"Topic":"",
-			"Content":""
+			"Content":"",
+			"media_id":""
+			
 		}
 	},
 	"wxPostTypes":{

@@ -49,6 +49,10 @@
 			"bsonType":"string",
 			"description":"缩略图"
 		},
+		"media_id":{
+			"bsonType":"string",
+			"description":"微信素材ID"
+		},
 		"IsTop":{
 			"bsonType":"bool",
 			"description":"是否置顶"

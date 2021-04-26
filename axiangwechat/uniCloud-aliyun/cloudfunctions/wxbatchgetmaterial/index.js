@@ -6,8 +6,8 @@ const {
 const db=uniCloud.database()
 exports.main = async (event, context) => {
 	let count=1;
-	let offset='';
-	
+	let offset='0';
+	let searchRes=0;
 	let body = event.body;
 	if(event.isBase64Encoded){
 	      body = Buffer.from(body);
@@ -29,10 +29,12 @@ exports.main = async (event, context) => {
 	}
 	
 	const collection=db.collection("wxAccessTokens")
-	
+	const postsCollection=db.collection("wxPosts")
 	//订阅号
 	const mpappid='wxbe1e31d732baba4c';
 	const mpqueryRes=await collection.where({"Appid":mpappid}).get()
+	
+
 	if(mpqueryRes.affectedDocs>0 && mpqueryRes.data!=undefined && mpqueryRes.data.length>0)
 	{
 		let access_token=mpqueryRes.data[0].AccessToken;
@@ -67,27 +69,33 @@ exports.main = async (event, context) => {
 				&& media.content.news_item!=undefined
 				&& media.content.news_item.length>=0
 				)
-				
-				for (var j = 0; j < media.content.news_item.length; j++) {
+				//判断media_ids是否存在
+				searchRes=await postsCollection.where({"media_id":media.media_id}).count();
+				if(searchRes.affectedDocs!=undefined && searchRes.total==0){
 					
-					var post=media.content.news_item[j];
-					let callFunctionResult = await uniCloud.callFunction({
-					    name: "addWxPost",
-					    data: { 
-							"PostId":"",
-							"Title":post.title,
-							"Description":post.digest,
-							"PostUrl":post.url,
-							"Author":post.author,
-							"Tags":"",
-							"Thumbnail":post.thumb_url,
-							"IsTop":false,
-							"PostType":"",
-							"Topic":"",
-							"Content":post.content
-						}
-					})
+					for (var j = 0; j < media.content.news_item.length; j++) {
+						
+						var post=media.content.news_item[j];
+						let callFunctionResult = await uniCloud.callFunction({
+						    name: "addWxPost",
+						    data: { 
+								"PostId":"",
+								"Title":post.title,
+								"Description":post.digest,
+								"PostUrl":post.url,
+								"Author":post.author,
+								"Tags":"",
+								"Thumbnail":post.thumb_url,
+								"IsTop":false,
+								"PostType":"",
+								"Topic":"",
+								"Content":post.content,
+								"media_id":media.media_id
+							}
+						})
+					}
 				}
+				return searchRes;
 			}
 		}
 		return res;
@@ -98,3 +106,4 @@ exports.main = async (event, context) => {
 };
 
 //https://5f910eba-d66b-4a7f-803e-46465dd1179a.bspapp.com/http/wxbatchgetmaterial
+//https://openapi.axiangblog.cn/weixinToken/v1/batchgetmaterial

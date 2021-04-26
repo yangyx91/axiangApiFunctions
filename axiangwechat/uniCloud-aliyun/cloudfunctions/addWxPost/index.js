@@ -19,7 +19,8 @@ exports.main = async (event, context) => {
 		"Thumbnail":"",
 		"IsTop":false,
 		"PostType":"",
-		"Topic":""
+		"Topic":"",
+		"media_id":""
 	};
 	
 	if(event.PostId!=undefined && event.PostId!=''){
@@ -66,6 +67,10 @@ exports.main = async (event, context) => {
 	
 	if(event.Content!=undefined && event.Content!=''){
 		wxPost.Content=event.Content;
+	}
+	
+	if(event.media_id!=undefined && event.media_id!=''){
+		wxPost.media_id=event.media_id;
 	}
 	
 	let body = event.body;
@@ -168,6 +173,10 @@ exports.main = async (event, context) => {
 			
 			if(param.Content!=undefined && param.Content!=''){
 				wxPost.Content=param.Content;
+			}
+			
+			if(param.media_id!=undefined && param.media_id!=''){
+				wxPost.media_id=param.media_id;
 			}
 			
 		}catch(e){
