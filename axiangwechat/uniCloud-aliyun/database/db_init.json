@@ -12,11 +12,10 @@
 			"Tags":"我的标签",
 			"Thumbnail":"",
 			"IsTop":false,
-			"PostType":"随笔分类",
-			"Topic":"",
-			"Content":"",
-			"media_id":""
-			
+			"PostType":"图文素材分类",
+			"Topic":"话题",
+			"Content":"素材HTML内容",
+			"media_id":"微信素材ID"
 		}
 	},
 	"wxPostTypes":{

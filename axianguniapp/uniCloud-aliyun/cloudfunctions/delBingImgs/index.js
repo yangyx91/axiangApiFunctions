@@ -38,7 +38,6 @@ exports.main = async (event, context) => {
 			msg: 'imgId为空'
 		}
 	}
-	
 };
 
 

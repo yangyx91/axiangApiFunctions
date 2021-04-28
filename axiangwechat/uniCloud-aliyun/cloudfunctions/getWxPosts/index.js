@@ -10,6 +10,8 @@ exports.main = async (event, context) => {
 	let postType='';
 	let postId='';
 	let title='';
+	let topic='';
+	let tags='';
 	let body = event.body
 	if(event.isBase64Encoded){
 	      body = Buffer.from(body)
@@ -39,6 +41,14 @@ exports.main = async (event, context) => {
 				postId=param.postId;
 			}
 			
+			if(param.topic!=undefined && param.topic!='' ){
+				topic=param.topic;
+			}
+			
+			if(param.Topic!=undefined && param.Topic!='' ){
+				topic=param.Topic;
+			}
+			
 			//模糊搜索
 			
 			if(param.title!=undefined && param.title!='' ){
@@ -65,11 +75,29 @@ exports.main = async (event, context) => {
 	
 	const collection=db.collection("wxPosts");
 	if(postType!=''){
-		let queryRes=await collection.where({
-			PostType:postType
+		if(topic!=''){
+			let typeRes=await collection.where({
+				Topic:topic,
+				PostType:postType
+			}).orderBy("PostDate", "desc").skip((page-1)*pageSize).limit(pageSize).get();
+			//返回数据给客户端
+			return typeRes
+		}
+		else
+		{
+			let queryRes=await collection.where({
+				PostType:postType
+			}).orderBy("PostDate", "desc").skip((page-1)*pageSize).limit(pageSize).get();
+			//返回数据给客户端
+			return queryRes
+		}
+	}
+	else if(topic!=''){
+		let topicRes=await collection.where({
+			Topic:topic
 		}).orderBy("PostDate", "desc").skip((page-1)*pageSize).limit(pageSize).get();
 		//返回数据给客户端
-		return queryRes
+		return topicRes
 	}
 	else if(title!=''){
 		const dbCmd=db.command
