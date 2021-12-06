@@ -4,8 +4,10 @@
     "\\axianguniapp",
     "\\axianguniapp\\uniCloud-aliyun",
     "\\axianguniapp\\uniCloud-aliyun\\cloudfunctions",
-    "\\axianguniapp\\uniCloud-aliyun\\cloudfunctions\\addBingImg",
-    "\\axianguniapp\\uniCloud-aliyun\\cloudfunctions\\getBingImgs"
+    "\\axiangwechat",
+    "\\axiangwechat\\uniCloud-aliyun\\cloudfunctions",
+    "\\axiangwechat\\uniCloud-aliyun\\cloudfunctions\\wxbatchgetmaterial"
   ],
+  "SelectedNode": "\\axianguniapp\\uniCloud-aliyun\\cloudfunctions\\getLoggers",
   "PreviewInSolutionExplorer": false
 }
